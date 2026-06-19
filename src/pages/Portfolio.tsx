@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { allCases, sectors, getFaviconUrl, type Sector } from '@/data/cases';
 
+const PROFILE_PHOTO = '/samuel-profile.jpg';
+
 const Portfolio: React.FC = () => {
   const [activeSector, setActiveSector] = useState<Sector>('Todos');
 
@@ -27,32 +29,66 @@ const Portfolio: React.FC = () => {
         </div>
       </header>
 
-      {/* Hero */}
-      <section className="pt-40 pb-16 px-6 md:px-10">
+      {/* Hero — Apresentação pessoal */}
+      <section className="pt-40 pb-20 px-6 md:px-10">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-none mb-6">
-            Portfólio
-          </h1>
-          <p className="text-gray-500 text-base md:text-lg max-w-lg leading-relaxed mb-14">
-            Seleção de projetos e clientes atendidos em mídia paga, posicionamento digital e captação de leads.
-          </p>
+          <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-start">
 
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pb-14 border-b border-white/[0.06]">
-            {[
-              { value: '+170', label: 'projetos entregues' },
-              { value: '+R$7M', label: 'em mídia gerida' },
-              { value: '+800K', label: 'leads gerados' },
-              { value: '+5 anos', label: 'de mercado' },
-            ].map((stat) => (
-              <div key={stat.label}>
-                <p className="text-2xl md:text-3xl font-black text-white">{stat.value}</p>
-                <p className="text-xs text-gray-600 mt-1">{stat.label}</p>
+            {/* Foto */}
+            <div className="flex-shrink-0">
+              <div className="w-40 h-40 md:w-52 md:h-52 overflow-hidden grayscale">
+                <img
+                  src={PROFILE_PHOTO}
+                  alt="Samuel Felipe"
+                  className="w-full h-full object-cover object-top"
+                />
               </div>
-            ))}
+            </div>
+
+            {/* Bio */}
+            <div className="flex-1 max-w-2xl">
+              <p className="text-[10px] text-gray-600 uppercase tracking-widest mb-4">Especialista em Crescimento Digital</p>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-none mb-6">
+                Samuel Felipe
+              </h1>
+              <p className="text-gray-400 text-base md:text-lg leading-relaxed mb-8">
+                Mais de 5 anos trabalhando com tráfego pago, posicionamento digital e captação de leads.
+                Passei por concessionárias de luxo, clínicas, e-commerces, indústrias e negócios de serviço,
+                sempre com o mesmo foco: resultado que aparece no faturamento, não no relatório.
+                Gerenciei mais de R$7 milhões em mídia paga e participei de mais de 170 projetos em setores
+                completamente diferentes.
+              </p>
+
+              {/* Especialidades */}
+              <div className="flex flex-wrap gap-x-6 gap-y-2 mb-10">
+                {['Meta Ads', 'Google Ads', 'YouTube Ads', 'LinkedIn Ads', 'Landing Pages', 'Funis de Conversão', 'SEO', 'CRO'].map((skill) => (
+                  <span key={skill} className="text-xs text-gray-500">{skill}</span>
+                ))}
+              </div>
+
+              {/* Stats */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-white/[0.06]">
+                {[
+                  { value: '+170', label: 'projetos' },
+                  { value: '+R$7M', label: 'em mídia' },
+                  { value: '+800K', label: 'leads' },
+                  { value: '+5 anos', label: 'de mercado' },
+                ].map((stat) => (
+                  <div key={stat.label}>
+                    <p className="text-xl md:text-2xl font-black text-white">{stat.value}</p>
+                    <p className="text-[10px] text-gray-600 mt-0.5">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
+
+      {/* Divisor */}
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
+        <div className="h-px bg-white/[0.06]" />
+      </div>
 
       {/* Filters */}
       <div className="sticky top-[61px] z-40 bg-[#050505]/95 backdrop-blur-md border-b border-white/[0.04] px-6 md:px-10">
@@ -86,7 +122,7 @@ const Portfolio: React.FC = () => {
                 className="group bg-[#050505] p-8 flex flex-col gap-5 hover:bg-white/[0.02] transition-colors"
               >
                 {/* Logo */}
-                <div className="w-12 h-12 overflow-hidden flex-shrink-0 opacity-80 group-hover:opacity-100 transition-opacity">
+                <div className="w-12 h-12 overflow-hidden flex-shrink-0 opacity-70 group-hover:opacity-100 transition-opacity">
                   {client.logo ? (
                     <img src={client.logo} alt={client.name} className="w-full h-full object-contain" loading="lazy" />
                   ) : (
